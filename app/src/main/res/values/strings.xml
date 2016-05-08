@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">UV Index</string>
+    <string name="action_settings">Settings</string>
+    <string name="WEATHER_API_REST_CALL">http://api.wunderground.com/api/41301e023fd96f20/geolookup/conditions/q/</string>
+</resources>
