@@ -76,7 +76,7 @@ public class Shape extends View {
         textPaint = new Paint();
         textPaint.setTypeface(Fonts.getCoolveticargFont(getContext()));
         textPaint.setTextSize(sun.getWidth() /2 - 50);
-        textPaint.setShadowLayer(1f, 0f, 1f, Color.WHITE);
+        textPaint.setShadowLayer(1f, 0f, 1f, Color.BLACK);
     }
 
     @Override

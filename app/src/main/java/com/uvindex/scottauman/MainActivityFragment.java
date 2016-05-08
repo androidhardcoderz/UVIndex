@@ -24,7 +24,7 @@ public class MainActivityFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();
 
-    private LinearLayout layout;
+    private LinearLayout layout,uvIndexLayout;
     private Shape shapeView;
     private ImageButton settings;
 
@@ -53,6 +53,7 @@ public class MainActivityFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         layout = (LinearLayout) view.findViewById(R.id.fragmentRelativeLayout);
+        uvIndexLayout = (LinearLayout) view.findViewById(R.id.uvIndexScrolableLayout);
         new LoadBitmapBG().execute(isDay());
     }
 
@@ -66,6 +67,12 @@ public class MainActivityFragment extends Fragment {
         //handle the uv index and data and place into UI
         shapeView.setUvIndex(uvObject.getCode());
         shapeView.invalidate(); //force redraw
+    }
+
+    private void loadUVViews(){
+        for(int i = 1; i < 12;i++){
+
+        }
     }
 
     /**determines by the current date and time

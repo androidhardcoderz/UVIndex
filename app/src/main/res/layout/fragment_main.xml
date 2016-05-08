@@ -24,20 +24,21 @@
             android:layout_weight="1"
             android:background="#66FFFFFF"
             android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/horizontalScrollView">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/uvIndexScrolableLayout">
+                </LinearLayout>
+            </HorizontalScrollView>
         </LinearLayout>
 
     </LinearLayout>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/settingsImageButton"
-        android:src="@drawable/settings"
-        android:layout_weight="2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:adjustViewBounds="false"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"/>
 
 </RelativeLayout>

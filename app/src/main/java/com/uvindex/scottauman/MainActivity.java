@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements DownloadResultRec
 
     private MainActivityFragment fragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,13 +55,12 @@ public class MainActivity extends AppCompatActivity implements DownloadResultRec
                 intent.putExtra(LATITUDE,latitude);
                 intent.putExtra(LONGITUDE,longitude);
 
-                //startService(intent);
+                startService(intent);
             }
         };
 
         Location location = new Location(getApplicationContext(),locationCallback);
         location.registerLocationUpdates();
-
     }
 
     @Override
@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements DownloadResultRec
                 break;
         }
     }
+
 
 
 }
