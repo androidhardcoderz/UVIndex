@@ -25,6 +25,7 @@ public class Shape extends View {
     // defines paint and canvas
     private Paint paint,textPaint;
     private Bitmap sun;
+    private String uvIndex;
 
     public Shape(Context context) {
         super(context);
@@ -57,6 +58,7 @@ public class Shape extends View {
     private void init(){
         setFocusable(true);
         setFocusableInTouchMode(true);
+        setUvIndex(" "); //default
         sun = BitmapFactory.decodeResource(getResources(), MainActivityFragment.isDay() ? R
                 .drawable.sun: R.drawable.moon );
         sun = Bitmap.createScaledBitmap(sun,600,600,false);
@@ -71,33 +73,36 @@ public class Shape extends View {
         paint.setFilterBitmap(true);
         paint.setDither(true);
 
-
         textPaint = new Paint();
         textPaint.setTypeface(Fonts.getCoolveticargFont(getContext()));
-        textPaint.setColor(Color.BLACK);
         textPaint.setTextSize(sun.getWidth() /2 - 50);
-        textPaint.setShadowLayer(1f, 0f, 1f, Color.WHITE);
-    }
-
-    public void addUVIndex(){
-        invalidate();
+        textPaint.setShadowLayer(1f, 0f, 1f, Color.BLACK);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+        textPaint.setColor(Color.parseColor(MainActivityFragment.getUVColorBasedOnIndex(getUvIndex())));
         int centerX = (canvas.getWidth()  - sun.getWidth()) /2;
         int centerY = (canvas.getHeight() - sun.getHeight()) /2;
         Log.d(TAG,"W:" + canvas.getWidth() / 2);
         Log.d(TAG,"H:" + canvas.getHeight() / 2);
-        String gText = "7";
         canvas.drawBitmap(sun,centerX,centerY,paint);
+
         Canvas canvas1 = new Canvas(sun);
-        // draw text to the Canvas center
         Rect bounds = new Rect();
-        textPaint.getTextBounds(gText, 0, gText.length(), bounds);
+        textPaint.getTextBounds(getUvIndex(), 0, getUvIndex().length(), bounds);
+
         int x = (sun.getWidth() - bounds.width())/2;
         int y = (sun.getHeight() + bounds.height())/2;
 
-        canvas1.drawText(gText, x, y, textPaint);
+        canvas1.drawText(getUvIndex(), x, y, textPaint);
+    }
+
+    public String getUvIndex() {
+        return uvIndex;
+    }
+
+    public void setUvIndex(String uvIndex) {
+        this.uvIndex = uvIndex;
     }
 }

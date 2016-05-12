@@ -47,10 +47,8 @@ public class DownloadService extends IntentService {
             this.stopSelf();
         }
 
-        /* Update UI: Download Service is Running */
-        receiver.send(STATUS_RUNNING,createWeatherFindBundle());
-        //create weather API_REST Call and download the data
 
+        //create weather API_REST Call and download the data
         //convert stream provided into JSON String
         DownloadURLData downloadURLData = new DownloadURLData();
         String serverResult = null;
@@ -58,6 +56,8 @@ public class DownloadService extends IntentService {
             serverResult = new InputStreamConverter(getApplicationContext()).convertInputStreamToString(
             downloadURLData.downloadData(WeatherAPIBuilder
                     .buildWeatherAPIString(getApplicationContext(),latitude,longitude)));
+             /* Update UI: Download Service is Running */
+            receiver.send(STATUS_RUNNING,createUpdateBundle("weather"));
         } catch (DownloadException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -72,21 +72,39 @@ public class DownloadService extends IntentService {
                 bundle.putString(ERROR,e.toString());
                 receiver.send(STATUS_ERROR,bundle);
             }
-        }else{
+        }else {
             //we got a response! Let's parse the response
             System.out.println(serverResult);
             JsonParser jsonParser = new JsonParser(getApplicationContext());
-            bundle.putParcelable(PAYLOAD,jsonParser.parseResultString(serverResult));
-            receiver.send(STATUS_FINISHED,bundle);
-        }
+             /* Update UI: Download Service is Running */
+            receiver.send(STATUS_RUNNING, createUpdateBundle("uvindex"));
+            bundle.putParcelable(PAYLOAD, jsonParser.parseResultString(serverResult));
+            receiver.send(STATUS_FINISHED, bundle);
 
-        Log.d(TAG, "Service Stopping!");
-        this.stopSelf();
+
+
+            Log.d(TAG, "Service Stopping!");
+            this.stopSelf();
+        }
+    }
+
+    private void sleepThread(){
+        try {
+            Thread.sleep(800);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private Bundle createLocationFindBundle(){
         Bundle bundle = new Bundle();
         bundle.putString(STATUS_UPDATE,"Searching For Your Location..");
+        return bundle;
+    }
+
+    private Bundle createUpdateBundle(String string){
+        Bundle bundle = new Bundle();
+        bundle.putString(STATUS_UPDATE,string);
         return bundle;
     }
 

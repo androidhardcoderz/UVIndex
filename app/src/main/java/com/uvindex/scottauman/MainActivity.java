@@ -10,7 +10,7 @@ import android.util.Log;
 import com.uvindex.scottauman.backgrounds.DownloadResultReceiver;
 import com.uvindex.scottauman.backgrounds.DownloadService;
 
-public class MainActivity extends AppCompatActivity implements DownloadResultReceiver.Receiver {
+public class MainActivity extends AppCompatActivity implements DownloadResultReceiver.Receiver{
 
     public static String LATITUDE = "latitude";
     public static String LONGITUDE = "longitude";
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements DownloadResultRec
     public final String TAG = getClass().getName();
 
     private MainActivityFragment fragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +55,14 @@ public class MainActivity extends AppCompatActivity implements DownloadResultRec
                 intent.putExtra(LATITUDE,latitude);
                 intent.putExtra(LONGITUDE,longitude);
 
-                //startService(intent);
+                startService(intent);
             }
         };
 
         Location location = new Location(getApplicationContext(),locationCallback);
         location.registerLocationUpdates();
-
     }
+
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
 
@@ -85,4 +86,7 @@ public class MainActivity extends AppCompatActivity implements DownloadResultRec
                 break;
         }
     }
+
+
+
 }

@@ -14,8 +14,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation"
+            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,7 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name=".backgrounds.DownloadService" android:exported="true"/>
+
+        <service
+            android:name=".backgrounds.DownloadService"
+            android:exported="true"/>
+
     </application>
 
 </manifest>

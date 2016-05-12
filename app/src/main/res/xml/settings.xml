@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Notification Settings">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="enabled"
+            android:summary="Receive Notification For UV Indexes That You Choose"
+            android:title="Enable UV Notifications"/>
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/time_names"
+            android:entryValues="@array/times_values"
+            android:key="time"
+            android:summary="Set The Recurring Time Between UV Updates"
+            android:title="Updates Time"></ListPreference>
+
+    </PreferenceCategory>
+</PreferenceScreen>
