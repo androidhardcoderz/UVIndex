@@ -123,6 +123,7 @@
         <option value="https://svn.atakmap.com/!/#" />
       </list>
     </option>
+    <option name="mySvnCommandLine" value="C:\Program Files\TortoiseSVN\bin\svn.exe" />
   </component>
   <component name="com.intellij.ide.fileTemplates.impl.FileTemplateManagerImpl">
     <recent_templates>
